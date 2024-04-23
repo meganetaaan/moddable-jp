@@ -7,6 +7,9 @@ jobs:
   textlint:
     name: textlint
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: textlint
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,11 +23,9 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           textlint_flags: "textlint --rulesdir=. --ignore-path=\"./.textlintignore\" \"../**/*.md\" "
-        working-directory: textlint
       - name: textlint-github-pr-review
         uses: tsuyoshicho/action-textlint@v3
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           textlint_flags: "textlint --rulesdir=. --ignore-path=\"./.textlintignore\" \"../**/*.md\" "
-        working-directory: textlint
