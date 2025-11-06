@@ -535,7 +535,7 @@ int espMemCmp(const void *a, const void *b, size_t count)
 void *espMallocUint32(int byteCount)
 {
 #if ESP32
-	return heap_caps_malloc(byteCount, MALLOC_CAP_32BIT);
+	return heap_caps_malloc(byteCount, MALLOC_CAP_INTERNAL | MALLOC_CAP_32BIT);
 #else
 	const char *start = (char *)gUnusedInstructionRAM[-2];
 	const char *end = start + gUnusedInstructionRAM[-1];
